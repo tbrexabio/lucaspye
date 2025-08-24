@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucasPye BIO - Contract Development Manufacturing Organization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e5aa8 0%, #2980b9 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ffc107 0%, #ff9800 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e4f8b 50%, #ffc107 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ffc107 0%, #ff9800 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1e5aa8;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #ffc107;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #1e5aa8;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .mission-text {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .mission-points {
+            list-style: none;
+        }
+
+        .mission-points li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .mission-points li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ffc107;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, #1e5aa8 0%, #2980b9 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(30, 90, 168, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffc107;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .founder-highlight {
+            background: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 5px solid #ffc107;
+        }
+
+        .founder-name {
+            color: #1e5aa8;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #1e5aa8 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .contact-info-section {
+            padding-left: 2rem;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            background: rgba(255,193,7,0.2);
+            padding: 12px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #ffc107;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #ffc107;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .mission-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info-section {
+                padding-left: 0;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card,
+        .stat-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">LP</div>
+                    <div>
+                        <div class="company-name">LucasPye BIO</div>
+                        <div class="tagline">Contract Development Manufacturing Organization</div>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <div>📍 Philadelphia, PA</div>
+                    <div>📞 (267) 225-5507</div>
+                    <div>✉️ info@lucaspye.com</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Accelerating Biotherapeutic Innovation</h1>
+                <p>Fast-tracking clinical development, manufacturing biologics below market price, and accelerating drug products into the global commercial market.</p>
+                <a href="#contact" class="cta-button">Partner With Us Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our CDMO Services</h2>
+            <p class="section-subtitle">Comprehensive biopharmaceutical development and manufacturing solutions to bring your innovations to market faster and more affordably.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Cell Line Development</h3>
+                    <p>Expert cell line development services to optimize your biologic production with industry-leading techniques and quality standards.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Process Development</h3>
+                    <p>Comprehensive process development from concept to commercial scale, ensuring robust and scalable manufacturing processes.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Analytical Method Development</h3>
+                    <p>Development and validation of analytical methods to ensure product quality, safety, and regulatory compliance throughout development.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Process Scale-Up Operations</h3>
+                    <p>Seamless scale-up from laboratory to commercial manufacturing with maintained product quality and process efficiency.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Process Characterization</h3>
+                    <p>Thorough process characterization studies to understand and control critical process parameters for consistent product quality.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Regulatory Support</h3>
+                    <p>Expert regulatory drafting and filing services to navigate complex approval processes and accelerate time to market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission" id="mission">
+        <div class="container">
+            <div class="mission-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">2018</span>
+                        <span class="stat-label">Founded</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Team Members</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">BSL-2</span>
+                        <span class="stat-label">Bioprocessing Facility</span>
+                    </div>
+                </div>
+                
+                <div class="mission-text">
+                    <h2 class="section-title">Our Mission</h2>
+                    <ul class="mission-points">
+                        <li>Lower Costs for Biotherapeutic Drugs</li>
+                        <li>Accelerate New Drugs into the Commercial Market</li>
+                        <li>Provide High-Quality Jobs to Underserved Communities</li>
+                        <li>Promote Diversity, Inclusion & Equality in Biotechnology</li>
+                        <li>Change the Narrative and "Face" of the Biotech Industry</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem; color: #666; font-style: italic;">
+                        "Our location in Philadelphia is significant in allowing LucasPye BIO to promote real-world diversity, inclusion & equality in biotechnology."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="section-title">About LucasPye BIO</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #555;">
+                    Currently operating at Philadelphia CIC, LucasPye BIO is a pioneering Contract Development Manufacturing Organization (CDMO) dedicated to making biotherapeutic drugs more accessible and affordable.
+                </p>
+                
+                <div class="founder-highlight">
+                    <div class="founder-name">Dr. Tia Lyles-Williams</div>
+                    <div style="color: #666; font-weight: bold; margin-bottom: 1rem;">Founder & CEO</div>
+                    <p style="color: #555;">
+                        A trailblazer in the Life Sciences world, Dr. Tia is committed to breaking barriers and building bridges in biotechnology. As a two-time life science start-up founder, she leads with a mission to make the biotech industry more inclusive while accelerating innovative drug development.
+                    </p>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                    <h3 style="color: #1e5aa8; margin-bottom: 1rem;">Specialized Expertise</h3>
+                    <p style="color: #555; text-align: left;">
+                        <strong>Product Focus:</strong> Viral Vectors, Gene Vectors, Monoclonal Antibodies, Recombinant Proteins, Enzymes<br>
+                        <strong>Future Facility:</strong> Large-Scale Bioprocessing Facility planned for Philadelphia, PA area<br>
+                        <strong>Industry Impact:</strong> Committed to changing the face of biotechnology through diversity and inclusion
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white; margin-bottom: 3rem;">Get In Touch</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem;">Send Us a Message</h3>
+                    <form action="mailto:info@lucaspye.com" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your project and how we can help..." required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info-section">
+                    <h3 style="margin-bottom: 2rem; color: #ffc107;">Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Location</strong><br>
+                            Philadelphia CIC<br>
+                            Philadelphia, Pennsylvania
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Phone</strong><br>
+                            (267) 225-5507
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            info@lucaspye.com
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <strong>Website</strong><br>
+                            www.lucaspyebio.com
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                        <p style="font-style: italic; opacity: 0.9;">
+                            "We're OPEN for Business and ready to partner with you on your biotherapeutic development journey."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LucasPye BIO</h3>
+                    <p>Contract Development Manufacturing Organization specializing in biotherapeutic drug development and manufacturing.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#services">Cell Line Development</a>
+                    <a href="#services">Process Development</a>
+                    <a href="#services">Analytical Method Development</a>
+                    <a href="#services">Process Scale-Up</a>
+                    <a href="#services">Regulatory Support</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Philadelphia, Pennsylvania</p>
+                    <p>(267) 225-5507</p>
+                    <p>info@lucaspye.com</p>
+                    <a href="https://www.lucaspyebio.com" target="_blank">www.lucaspyebio.com</a>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid #333; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2024 LucasPye BIO. All rights reserved. | Founded 2018 | Philadelphia, PA</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+                    Committed to diversity, inclusion, and equality in biotechnology.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation to stats when they come into view
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .service-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
